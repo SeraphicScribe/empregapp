@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using EmpRegApp.Models;
+using EmpRegApp.Filters;
 
 namespace EmpRegApp.Controllers
 {
@@ -36,6 +37,7 @@ namespace EmpRegApp.Controllers
         }
 
         // PUT: api/Employees/5
+        [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEmployee(int id, Employee employee)
         {
@@ -71,6 +73,7 @@ namespace EmpRegApp.Controllers
         }
 
         // POST: api/Employees
+        [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(Employee))]
         public IHttpActionResult PostEmployee(Employee employee)
         {
@@ -86,6 +89,7 @@ namespace EmpRegApp.Controllers
         }
 
         // DELETE: api/Employees/5
+        [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(Employee))]
         public IHttpActionResult DeleteEmployee(int id)
         {

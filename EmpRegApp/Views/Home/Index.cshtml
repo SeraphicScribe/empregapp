@@ -8,6 +8,17 @@
     <script src="~/Scripts/Employee.js"></script>
     <script src="~/Scripts/knockout.validation.js"></script>
     <script type="text/javascript">
+        // AntiForgery token script
+        @functions{
+            public string TokenHeaderValue()
+            {
+                string cookieToken, formToken;
+                AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                return cookieToken + ":" + formToken;                
+            }
+        }
+
+
         // ko Validation
 
         function EmployeesViewModel() {
@@ -17,15 +28,6 @@
             
             
 
-            // POST Add Employee
-            self.addEmployee = function () {
-                $.post("api/employees",
-                    $("#addEmployee").serialize(),
-                    function (value) {
-                        self.employees.push(value);
-                    },
-                    "json");
-            }
 
             // POST create Employee
             self.createEmployee = function () {
@@ -33,9 +35,13 @@
                     type: "POST",
                     url: "api/employees",
                     data: $("#addEmployee").serialize(),
+                    dataType: "json",
                     success: function (data) {
                         self.employees.push(data);
                         alert("Employee registered");
+                    },
+                    headers: {
+                        'RequestVerificationToken': '@TokenHeaderValue()'
                     }
                 }).fail(
                     function (xhr, textStatus, err) {
@@ -54,6 +60,9 @@
                         success: function (data) {
                             self.employees.remove(employee);
                             alert("Employee Deleted Successfully");
+                        },
+                        headers: {
+                            'RequestVerificationToken': '@TokenHeaderValue()'
                         }
                     }).fail(
                          function (xhr, textStatus, err) {
