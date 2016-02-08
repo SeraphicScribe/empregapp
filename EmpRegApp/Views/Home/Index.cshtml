@@ -9,6 +9,8 @@
         function EmployeesViewModel() {
             var self = this;
             self.employees = ko.observableArray([]);
+
+            // POST Employee
             self.addEmployee = function () {
                 $.post("api/employees",
                     $("#addEmployee").serialize(),
@@ -37,6 +39,7 @@
                 }
             }
 
+            // GET all Employees
             $.getJSON("api/employees", function (data) {
                 self.employees(data);
             });
