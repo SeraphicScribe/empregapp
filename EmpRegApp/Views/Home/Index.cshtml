@@ -12,11 +12,8 @@
 
         function EmployeesViewModel() {
             var self = this;
-            self.employees = ko.observableArray([]).extend({
-                required: true,
-                message: "This field is required"
-            });
-
+            self.employees = ko.observableArray([]);
+            
             
             
 
