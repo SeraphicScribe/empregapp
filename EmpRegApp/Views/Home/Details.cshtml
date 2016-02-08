@@ -1,0 +1,90 @@
+﻿@model EmpRegApp.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.streetAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.streetAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobileNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobileNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nicNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nicNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Self)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Self)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.employeeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
