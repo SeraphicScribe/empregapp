@@ -34,6 +34,7 @@ namespace EmpRegApp.Controllers
         }
 
         // GET: Home
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Employees.ToList());
@@ -64,6 +65,7 @@ namespace EmpRegApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "canEdit")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "employeeID,firstName,lastName,streetAddress,city,mobileNumber,birthDate,nicNumber,email,Self")] Employee employee)
         {
@@ -78,6 +80,7 @@ namespace EmpRegApp.Controllers
         }
 
         // GET: Home/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,6 +99,7 @@ namespace EmpRegApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "canEdit")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "employeeID,firstName,lastName,streetAddress,city,mobileNumber,birthDate,nicNumber,email,Self")] Employee employee)
         {
@@ -109,6 +113,7 @@ namespace EmpRegApp.Controllers
         }
 
         // GET: Home/Delete/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,6 +129,7 @@ namespace EmpRegApp.Controllers
         }
 
         // POST: Home/Delete/5
+        [Authorize(Roles = "canEdit")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

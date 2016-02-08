@@ -37,6 +37,7 @@ namespace EmpRegApp.Controllers
         }
 
         // PUT: api/Employees/5
+        [Authorize(Roles = "canEdit")]
         [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEmployee(int id, Employee employee)
@@ -73,6 +74,8 @@ namespace EmpRegApp.Controllers
         }
 
         // POST: api/Employees
+        [HttpPost]
+        [Authorize(Roles = "canEdit")]
         [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(Employee))]
         public IHttpActionResult PostEmployee(Employee employee)
@@ -89,6 +92,7 @@ namespace EmpRegApp.Controllers
         }
 
         // DELETE: api/Employees/5
+        [Authorize(Roles = "canEdit")]
         [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(Employee))]
         public IHttpActionResult DeleteEmployee(int id)
