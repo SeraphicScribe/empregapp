@@ -58,11 +58,11 @@ namespace EmpRegApp
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "315343912402-ut5t7g43u3eracgp6ioedpv0sd9mkp71.apps.googleusercontent.com",
+                ClientSecret = "HVh4wTqVr_338YdvNcyzRorw"
+            });
         }
     }
 }
