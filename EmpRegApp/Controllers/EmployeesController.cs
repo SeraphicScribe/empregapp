@@ -75,7 +75,7 @@ namespace EmpRegApp.Controllers
 
         // POST: api/Employees
         [HttpPost]
-        [Authorize(Roles = "canEdit")]
+        //[Authorize(Roles = "canEdit")]
         [ValidateHttpAntiForgeryToken]
         [ResponseType(typeof(Employee))]
         public IHttpActionResult PostEmployee(Employee employee)
