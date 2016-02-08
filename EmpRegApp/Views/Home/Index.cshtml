@@ -17,14 +17,24 @@
                     },
                     "json");
             }
-            self.removeEmployee = function (employee) {
-                $.ajax({
-                    type: "DELETE",
-                    url: employee.Self,
-                    success: function () {
-                        self.employees.remove(employee);
-                    }
-                });
+            
+            // Delete Employee
+            self.deleteEmployee = function (employee) {
+                if (confirm('Are you sure to delete employee "' + employee.firstName + ' ' + employee.lastName + '" ?')) {
+                    var id = employee.employeeID;
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: employee.Self,
+                        success: function (data) {
+                            self.employees.remove(employee);
+                            alert("Employee Deleted Successfully");
+                        }
+                    }).fail(
+                         function (xhr, textStatus, err) {
+                             alert(err);
+                         });
+                }
             }
 
             $.getJSON("api/employees", function (data) {
@@ -51,7 +61,7 @@
         <div data-bind="if: $data.email"><a data-bind="attr: { href: 'mailto:' + email }, text: email"></a></div>
         <div data-bind="ifnot: $data.email"><span>email?</span></div>
         <p>
-            <a data-bind="attr: { href: Self }, click: $root.removeEmployees" class="removeEmployees ui-state-default ui-corner-all">Remove</a>
+            <a data-bind="attr: { href: Self }, click: $root.deleteEmployee" class="removeEmployees ui-state-default ui-corner-all">Remove</a>
 
         </p>
     </li>

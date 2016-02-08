@@ -15,6 +15,7 @@ form li {
 }
 form input[type="text"] {
     width: 100%;
+    display:block;
 }
 #addEmployee {
     width: 300px;
