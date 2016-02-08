@@ -13,7 +13,7 @@ namespace EmpRegApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602082110509_Initial"; }
+            get { return "201602081134420_Initial"; }
         }
         
         string IMigrationMetadata.Source

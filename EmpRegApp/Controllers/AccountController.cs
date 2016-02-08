@@ -367,13 +367,7 @@ namespace EmpRegApp.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser 
-                { 
-                    UserName = model.Email,
-                    Email = model.Email,
-                    BirthDate = model.BirthDate,
-                    HomeTown = model.HomeTown
-                };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
