@@ -1,81 +1,99 @@
 ﻿@model IEnumerable<EmpRegApp.Models.Employee>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/knockout")
+    <script type="text/javascript">
+        function EmployeesViewModel() {
+            var self = this;
+            self.employees = ko.observableArray([]);
+            self.addEmployee = function () {
+                $.post("api/employees",
+                    $("#addEmployee").serialize(),
+                    function (value) {
+                        self.employees.push(value);
+                    },
+                    "json");
+            }
+            self.removeEmployee = function (employee) {
+                $.ajax({
+                    type: "DELETE",
+                    url: employee.Self,
+                    success: function () {
+                        self.employees.remove(employee);
+                    }
+                });
+            }
+
+            $.getJSON("api/employees", function (data) {
+                self.employees(data);
+            });
+        }
+        ko.applyBindings(new EmployeesViewModel());
+    </script>
 }
 
-<h2>Index</h2>
+<h2>Employees</h2>
+<div>
+    @Html.ActionLink("View List", "List")
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.firstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.streetAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.city)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mobileNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nicNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Self)
-        </th>
-        <th></th>
-    </tr>
+<ul id="employees" data-bind="foreach: employees">
+    <li class="ui-widget-content ui-corner-all">
+        <h1 data-bind="text: firstName" class="ui-widget-header"></h1>
+        <div><span data-bind="text: $data.nicNumber || 'nicNumber?'"></span></div>
+        <div>
+            <span data-bind="text: $data.streetAddress || 'streetAddress?'"></span>,
+            <span data-bind="text: $data.city || 'city?'"></span>
+        </div>
+        <div data-bind="if: $data.email"><a data-bind="attr: { href: 'mailto:' + email }, text: email"></a></div>
+        <div data-bind="ifnot: $data.email"><span>email?</span></div>
+        <p>
+            <a data-bind="attr: { href: Self }, click: $root.removeEmployees" class="removeEmployees ui-state-default ui-corner-all">Remove</a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.streetAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.city)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mobileNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nicNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Self)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.employeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.employeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.employeeID })
-        </td>
-    </tr>
-}
+        </p>
+    </li>
+</ul>
 
-</table>
+@*<form id="addEmployee" data-bind="submit: addEmployee">
+        <fieldset>
+            <legend>Add New Employee</legend>
+            <ol>
+                <li>
+                    <label for="firstName">First Name</label>
+                    <input type="text" name="firstName" />
+                </li>
+                <li>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" name="lastName" />
+                </li>
+                <li>
+                    <label for="streetAddress">Street Address</label>
+                    <input type="text" name="streetAddress">
+                </li>
+                <li>
+                    <label for="city">City</label>
+                    <input type="text" name="city" />
+                </li>
+                <li>
+                    <label for="mobileNumber">Mobile numer</label>
+                    <input type="text" name="mobileNumber" />
+                </li>
+                <li>
+                    <label for="nicNumber">NIC</label>
+                    <input type="text" name="nicNumber" />
+                </li>
+                <li>
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" />
+                </li>
+                <li>
+                    <label for="birthDate">Date of Birth</label>
+                    <input type="text" name="birthDate" />
+                </li>
+            </ol>
+            <input type="submit" value="Add" />
+        </fieldset>
+    </form>*@
