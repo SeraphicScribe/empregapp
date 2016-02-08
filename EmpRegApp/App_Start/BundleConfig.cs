@@ -29,7 +29,9 @@ namespace EmpRegApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/employee.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/zocial.css"
+                      ));
         }
     }
 }
