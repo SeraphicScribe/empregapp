@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Home";
 }
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/knockout")
     <script type="text/javascript">
         function EmployeesViewModel() {
@@ -33,14 +33,14 @@
         }
         ko.applyBindings(new EmployeesViewModel());
     </script>
-}
+}*@
 
 <h2>Employees</h2>
 <div>
     @Html.ActionLink("View List", "List")
 </div>
 
-<ul id="employees" data-bind="foreach: employees">
+@*<ul id="employees" data-bind="foreach: employees">
     <li class="ui-widget-content ui-corner-all">
         <h1 data-bind="text: firstName" class="ui-widget-header"></h1>
         <div><span data-bind="text: $data.nicNumber || 'nicNumber?'"></span></div>
@@ -55,7 +55,7 @@
 
         </p>
     </li>
-</ul>
+</ul>*@
 
 @*<form id="addEmployee" data-bind="submit: addEmployee">
         <fieldset>
