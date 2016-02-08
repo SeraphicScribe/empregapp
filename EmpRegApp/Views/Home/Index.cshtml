@@ -5,12 +5,22 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/knockout")
+    <script src="~/Scripts/Employee.js"></script>
+    <script src="~/Scripts/knockout.validation.js"></script>
     <script type="text/javascript">
+        // ko Validation
+
         function EmployeesViewModel() {
             var self = this;
-            self.employees = ko.observableArray([]);
+            self.employees = ko.observableArray([]).extend({
+                required: true,
+                message: "This field is required"
+            });
 
-            // POST Employee
+            
+            
+
+            // POST Add Employee
             self.addEmployee = function () {
                 $.post("api/employees",
                     $("#addEmployee").serialize(),
@@ -18,6 +28,22 @@
                         self.employees.push(value);
                     },
                     "json");
+            }
+
+            // POST create Employee
+            self.createEmployee = function () {
+                $.ajax({
+                    type: "POST",
+                    url: "api/employees",
+                    data: $("#addEmployee").serialize(),
+                    success: function (data) {
+                        self.employees.push(data);
+                        alert("Employee registered");
+                    }
+                }).fail(
+                    function (xhr, textStatus, err) {
+                        alert(err);
+                    });
             }
             
             // Delete Employee
@@ -70,43 +96,43 @@
     </li>
 </ul>
 
-<form id="addEmployee" data-bind="submit: addEmployee">
-        <fieldset>
-            <legend>Add New Employee</legend>
-            <ol>
-                <li>
-                    <label for="firstName">First Name</label>
-                    <input type="text" name="firstName" />
-                </li>
-                <li>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" name="lastName" />
-                </li>
-                <li>
-                    <label for="streetAddress">Street Address</label>
-                    <input type="text" name="streetAddress">
-                </li>
-                <li>
-                    <label for="city">City</label>
-                    <input type="text" name="city" />
-                </li>
-                <li>
-                    <label for="mobileNumber">Mobile numer</label>
-                    <input type="text" name="mobileNumber" />
-                </li>
-                <li>
-                    <label for="nicNumber">NIC</label>
-                    <input type="text" name="nicNumber" />
-                </li>
-                <li>
-                    <label for="email">E-mail</label>
-                    <input type="text" name="email" />
-                </li>
-                <li>
-                    <label for="birthDate">Date of Birth</label>
-                    <input type="text" name="birthDate" />
-                </li>
-            </ol>
-            <input type="submit" value="Add" />
-        </fieldset>
-    </form>
+<form id="addEmployee" data-bind="submit: createEmployee">
+    <fieldset>
+        <legend>Add New Employee</legend>
+        <ol>
+            <li>
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" />
+            </li>
+            <li>
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" />
+            </li>
+            <li>
+                <label for="streetAddress">Street Address</label>
+                <input type="text" name="streetAddress">
+            </li>
+            <li>
+                <label for="city">City</label>
+                <input type="text" name="city" />
+            </li>
+            <li>
+                <label for="mobileNumber">Mobile numer</label>
+                <input type="text" name="mobileNumber" />
+            </li>
+            <li>
+                <label for="nicNumber">NIC</label>
+                <input type="text" name="nicNumber" />
+            </li>
+            <li>
+                <label for="email">E-mail</label>
+                <input type="text" name="email" />
+            </li>
+            <li>
+                <label for="birthDate">Date of Birth</label>
+                <input type="text" name="birthDate" />
+            </li>
+        </ol>
+        <input type="submit" value="Add" />
+    </fieldset>
+</form>
