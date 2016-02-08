@@ -19,14 +19,14 @@ form input[type="text"] {
 #addEmployee {
     width: 300px;
     float: left;
-    width:0%;
+    width: 30%;
 }
 #employees {
     list-style-type: none;
     margin: 0;
     padding: 0;
     float:left;
-    width: 100%;
+    width: 70%;
 }
 #employees li {
     margin: 3px 3px 3px 0;
