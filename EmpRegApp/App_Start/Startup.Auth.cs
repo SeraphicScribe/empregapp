@@ -54,9 +54,9 @@ namespace EmpRegApp
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "999726390097856",
+               appSecret: "e9050d200b55853447107c1f0869bb75");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

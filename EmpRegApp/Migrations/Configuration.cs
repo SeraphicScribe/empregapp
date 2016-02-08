@@ -1,8 +1,10 @@
 namespace EmpRegApp.Migrations
 {
-    using EmpRegApp.Models;
     using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
+    using EmpRegApp.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<EmpRegApp.Models.ApplicationDbContext>
     {
@@ -10,7 +12,6 @@ namespace EmpRegApp.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "EmpRegApp.Models.ApplicationDbContext";
         }
 
         protected override void Seed(EmpRegApp.Models.ApplicationDbContext context)
@@ -27,6 +28,7 @@ namespace EmpRegApp.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
             context.Employees.AddOrUpdate(p => p.nicNumber,
                new Employee
                {
@@ -85,7 +87,6 @@ namespace EmpRegApp.Migrations
                     email = "diliana@example.com"
                 }
             );
-
         }
     }
 }
