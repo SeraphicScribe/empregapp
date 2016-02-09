@@ -30,7 +30,8 @@ namespace EmpRegApp
                       "~/Content/bootstrap.css",
                       "~/Content/employee.css",
                       "~/Content/site.css",
-                      "~/Content/zocial.css"
+                      "~/Content/zocial.css",
+                      "~/Content/navbarcustom.css"
                       ));
         }
     }

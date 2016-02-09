@@ -1,9 +1,12 @@
 ﻿div .all-res {
     width:100%;
+    padding:1px;
     position:relative;
 }
 div .sub-div {
     float:left;
+    height: auto;
+    padding:5px;
     width: 33%;
 }
 

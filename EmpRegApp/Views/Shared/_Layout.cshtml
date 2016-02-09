@@ -9,10 +9,21 @@
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" type="text/css" href="~/Content/Layout.css">
     <link rel="stylesheet" type="text/css" href="~/Content/About.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/navbarcustom.css">
+    @section Scripts {
+        <script type="text/javascript">
+            bootstrap_alert = function () { }
+            bootstrap_alert.warning = function (message) {
+                $('#alert_placeholder').html('<div class="alert alert-danger" role="alert"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
+            }
+
+            
+        </script>
+    }
 </head>
 <body>
     <header>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top navbar-custom">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,18 +31,20 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Employee Registration", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink(" Employee Registration", "Index", "Home", new { area = "" }, new { @class = "navbar-brand glyphicon glyphicon-home" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink(" About", "About", "Home", new { @class = "glyphicon glyphicon-info-sign" })</li>
+                        <li>@Html.ActionLink(" Contact", "Contact", "Home", new { @class = "glyphicon glyphicon-earphone" })</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </div>
     </header>
+    <br />
+    @*<div id="alert_placeholder"></div>*@
     <div id="body container body-content" style="padding:1%" class="page-wrap">
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix">
