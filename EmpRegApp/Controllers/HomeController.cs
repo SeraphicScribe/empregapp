@@ -20,6 +20,7 @@ namespace EmpRegApp.Controllers
             return View(db.Employees.ToList());
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -34,7 +35,6 @@ namespace EmpRegApp.Controllers
         }
 
         // GET: Home
-        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Employees.ToList());
