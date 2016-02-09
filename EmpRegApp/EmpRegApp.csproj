@@ -216,6 +216,7 @@
     <Content Include="Content\zocial.woff" />
     <None Include="Properties\PublishProfiles\EmpRegApp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\EmpRegApp.pubxml" />
+    <Content Include="Scripts\addvalidate.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Employee.js" />
