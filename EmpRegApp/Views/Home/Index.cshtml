@@ -16,6 +16,49 @@
             $('#alert_placeholder').html('<div class="alert alert-success" role="alert"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
         }
 
+        //Add Employee Form Validation
+        function validateForm() {
+            if (document.myForm.firstName.value == "") {
+                bootstrap_alert.warning("Please provide your first name!");
+                document.myForm.firstName.focus();
+                return false;
+            }
+            if (document.myForm.lasttName.value == "") {
+                bootstrap_alert.warning("Please provide your last name!");
+                document.myForm.lastName.focus();
+                return false;
+            }
+            if (document.myForm.streetAddress.value == "") {
+                bootstrap_alert.warning("Please provide your Street Address! e.g : N0 232/5 Madiwella Rd");
+                document.myForm.streetAddress.focus();
+                return false;
+            }
+            if (document.myForm.city.value == "") {
+                bootstrap_alert.warning("Please provide your City! e.g : Colombo");
+                document.myForm.city.focus();
+                return false;
+            }
+            if (document.myForm.mobileNumber.value == "") {
+                bootstrap_alert.warning("Please provide your Mobile Number! Format : XXX-XXXXXXX");
+                document.myForm.mobileNumber.focus();
+                return false;
+            }
+            if (document.myForm.nicNumber.value == "") {
+                bootstrap_alert.warning("Please provide your NIC Number! Format : XXXXXXXXXv");
+                document.myForm.nicNumber.focus();
+                return false;
+            }
+            if (document.myForm.email.value == "") {
+                bootstrap_alert.warning("Please provide your Email! Format : user@example.com");
+                document.myForm.email.focus();
+                return false;
+            }
+            if (document.myForm.birthDate.value == "") {
+                bootstrap_alert.warning("Please provide your Date of Birth! Format : yyyy/mm/dd");
+                document.myForm.birthDate.focus();
+                return false;
+            }
+        }
     </script>
 
   <script type="text/javascript">
@@ -29,9 +72,7 @@
             }
         }
 
-
-        // ko Validation
-
+        // KO scripts
         function EmployeesViewModel() {
             var self = this;
             self.employees = ko.observableArray([]);
@@ -56,7 +97,7 @@
                     }
                 }).fail(
                     function (xhr, textStatus, err) {
-                        bootstrap_alert.warning("Operation Invalid");
+                        //bootstrap_alert.warning("Operation Invalid");
                     });
             }
             
@@ -113,7 +154,7 @@
     </li>
 </ul>
 
-<form id="addEmployee" data-bind="submit: createEmployee">
+<form id="addEmployee" name="myForm" onsubmit="return(validateForm());" data-bind="submit: createEmployee">
     <fieldset>
         <legend>Add New Employee</legend>
         <ol>
