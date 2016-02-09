@@ -7,8 +7,8 @@
 <h2>Employee Details</h2>
 
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.employeeID }) |
-    @Html.ActionLink("Back to List", "List")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.employeeID }, new { @class = "btn btn-default btn-sm" })
+    @Html.ActionLink("Back to List", "List", "Home", new { @class = "btn btn-default btn-sm" })
 </div>
 
 <div>
