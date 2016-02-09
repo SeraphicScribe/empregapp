@@ -1,0 +1,16 @@
+﻿div .all-res {
+    width:100%;
+    position:relative;
+}
+div .sub-div {
+    float:left;
+    width: 33%;
+}
+
+div .sub-div:first-child{
+	margin-left: 0;
+}
+div.box_frame:last-child{
+	margin-right: 0;
+    float: right;
+}
